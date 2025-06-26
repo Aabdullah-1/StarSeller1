@@ -9,142 +9,255 @@
     body {
       margin: 0;
       font-family: 'Noto Sans Bengali', sans-serif;
-      background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+      background: linear-gradient(270deg, #fce4ec, #e3f2fd, #fff3e0);
+      background-size: 600% 600%;
+      animation: gradientAnimation 16s ease infinite;
       color: #212121;
+      overflow-x: hidden;
+      transition: background 0.5s ease, color 0.5s ease;
     }
+
+    @keyframes gradientAnimation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* ডার্ক মোড স্টাইল */
+    body.dark-mode {
+      background: linear-gradient(270deg, #121212, #1e1e1e, #2c2c2c);
+      color: #e0e0e0;
+      animation: none;
+    }
+
+    .stars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Full_Star_Yellow.svg/20px-Full_Star_Yellow.svg.png') no-repeat center;
+      background-size: contain;
+      animation: fall 5s linear infinite;
+      opacity: 0.8;
+      filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.8));
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(-40px) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+    }
+
     header {
       background: linear-gradient(to right, #1e88e5, #3949ab);
       color: white;
-      padding: 25px 15px;
+      padding: 20px 15px;
       text-align: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
     header h1 {
       margin: 0;
       font-size: 24px;
+      flex-grow: 1;
     }
+
+    /* মোড টগল বাটন */
+    #modeToggle {
+      background-color: #00c853;
+      border: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+      margin-left: 15px;
+    }
+    #modeToggle:hover {
+      background-color: #009624;
+    }
+
     .container {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 16px;
       padding: 20px;
-      max-width: 1000px;
+      max-width: 1024px;
       margin: auto;
+      position: relative;
+      z-index: 1;
     }
+
     .package {
       background: #ffffff;
-      border-radius: 15px;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
       padding: 20px;
       text-align: center;
       transition: all 0.3s ease;
     }
+
+    /* ডার্ক মোডে প্যাকেজ ব্যাকগ্রাউন্ড ও শেড */
+    body.dark-mode .package {
+      background: #2c2c2c;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
     .package:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
     }
+
     .package h2 {
-      color: #5e35b1;
-      margin-bottom: 8px;
-      font-size: 20px;
-    }
-    .price {
+      color: #3949ab;
       font-size: 18px;
-      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    /* ডার্ক মোডে হেডিং কালার */
+    body.dark-mode .package h2 {
+      color: #90caf9;
+    }
+
+    .price {
+      font-size: 16px;
+      font-weight: bold;
       color: #2e7d32;
       margin-bottom: 15px;
     }
+
+    /* ডার্ক মোডে প্রাইস কালার */
+    body.dark-mode .price {
+      color: #81c784;
+    }
+
     .btn {
       display: inline-block;
-      padding: 10px 20px;
+      padding: 8px 16px;
       background-color: #00c853;
       color: white;
-      border-radius: 10px;
+      border-radius: 8px;
       font-weight: 700;
       text-decoration: none;
-      font-size: 15px;
+      font-size: 14px;
       transition: background 0.3s ease;
     }
+
     .btn:hover {
       background-color: #009624;
     }
+
     footer {
       text-align: center;
-      padding: 18px;
+      padding: 15px;
       background: #eeeeee;
       font-size: 14px;
       color: #555;
       margin-top: 30px;
+      position: relative;
+      z-index: 1;
+      transition: background 0.5s ease, color 0.5s ease;
+    }
+
+    /* ডার্ক মোডে ফুটার কালার */
+    body.dark-mode footer {
+      background: #1e1e1e;
+      color: #ccc;
     }
 
     @media (max-width: 480px) {
       header h1 {
         font-size: 20px;
       }
-      .package h2 {
-        font-size: 18px;
+      .package {
+        padding: 15px;
       }
-      .price {
+      .package h2 {
         font-size: 16px;
       }
-      .btn {
+      .price {
         font-size: 14px;
-        padding: 8px 16px;
+      }
+      .btn {
+        font-size: 13px;
+        padding: 7px 14px;
       }
     }
   </style>
 </head>
 <body>
+  <div class="stars"></div>
 
   <header>
     <h1>ফেসবুক স্টার কিনুন - নিরাপদ ও সহজে</h1>
+    <button id="modeToggle" aria-label="Toggle Dark Mode">ডার্ক মোড চালু করুন</button>
   </header>
 
   <div class="container">
     <div class="package">
       <h2>🔹 ১০ স্টার</h2>
       <p class="price">৩০ টাকা</p>
-      <a href="order.html" class="btn">অর্ডার করুন</a>
+      <a href="order.html?package=১০ স্টার - ৩০ টাকা" class="btn">অর্ডার করুন</a>
     </div>
     <div class="package">
       <h2>🔹 ২০ স্টার</h2>
       <p class="price">৬০ টাকা</p>
-      <a href="order.html" class="btn">অর্ডার করুন</a>
+      <a href="order.html?package=২০ স্টার - ৬০ টাকা" class="btn">অর্ডার করুন</a>
     </div>
     <div class="package">
       <h2>🔹 ৩০ স্টার</h2>
       <p class="price">৯০ টাকা</p>
-      <a href="order.html" class="btn">অর্ডার করুন</a>
+      <a href="order.html?package=৩০ স্টার - ৯০ টাকা" class="btn">অর্ডার করুন</a>
     </div>
     <div class="package">
       <h2>🔹 ৪০ স্টার</h2>
       <p class="price">১২০ টাকা</p>
-      <a href="order.html" class="btn">অর্ডার করুন</a>
+      <a href="order.html?package=৪০ স্টার - ১২০ টাকা" class="btn">অর্ডার করুন</a>
     </div>
     <div class="package">
       <h2>🔹 ৫০ স্টার</h2>
       <p class="price">১৫০ টাকা</p>
-      <a href="order.html" class="btn">অর্ডার করুন</a>
+      <a href="order.html?package=৫০ স্টার - ১৫০ টাকা" class="btn">অর্ডার করুন</a>
     </div>
     <div class="package">
       <h2>⭐ ১০০ স্টার</h2>
       <p class="price">৩০০ টাকা</p>
-      <a href="order.html" class="btn">অর্ডার করুন</a>
+      <a href="order.html?package=১০০ স্টার - ৩০০ টাকা" class="btn">অর্ডার করুন</a>
     </div>
     <div class="package">
       <h2>⭐ ২০০ স্টার</h2>
       <p class="price">৫৫০ টাকা</p>
-      <a href="order.html" class="btn">অর্ডার করুন</a>
+      <a href="order.html?package=২০০ স্টার - ৫৫০ টাকা" class="btn">অর্ডার করুন</a>
     </div>
     <div class="package">
       <h2>⭐ ৩০০ স্টার</h2>
       <p class="price">৭৫০ টাকা</p>
-      <a href="order.html" class="btn">অর্ডার করুন</a>
+      <a href="order.html?package=৩০০ স্টার - ৭৫০ টাকা" class="btn">অর্ডার করুন</a>
     </div>
     <div class="package">
       <h2>⭐ ৪০০ স্টার</h2>
       <p class="price">১০০০ টাকা</p>
-      <a href="order.html" class="btn">অর্ডার করুন</a>
+      <a href="order.html?package=৪০০ স্টার - ১০০০ টাকা" class="btn">অর্ডার করুন</a>
+    </div>
+    <div class="package">
+      <h2>⭐ ৫০০ স্টার</h2>
+      <p class="price">১২৫০ টাকা</p>
+      <a href="order.html?package=৫০০ স্টার - ১২৫০ টাকা" class="btn">অর্ডার করুন</a>
     </div>
   </div>
 
@@ -152,5 +265,43 @@
     &copy; 2025 Star Sender | বিকাশ, নগদ ও রকেট পেমেন্ট গ্রহণযোগ্য
   </footer>
 
+  <script>
+    // স্টার এনিমেশন
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 25; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDelay = Math.random() * 5 + 's';
+      star.style.animationDuration = 3 + Math.random() * 2 + 's';
+      starsContainer.appendChild(star);
+    }
+
+    // মোড টগল বাটন ও লোকালস্টোরেজে মোড সেভ
+    const toggleBtn = document.getElementById('modeToggle');
+
+    // পেজ লোড হলে ইউজারের মোড লোড করা
+    window.addEventListener('DOMContentLoaded', () => {
+      const mode = localStorage.getItem('mode');
+      if(mode === 'dark'){
+        document.body.classList.add('dark-mode');
+        toggleBtn.textContent = 'হোয়াইট মোড চালু করুন';
+      } else {
+        document.body.classList.remove('dark-mode');
+        toggleBtn.textContent = 'ডার্ক মোড চালু করুন';
+      }
+    });
+
+    toggleBtn.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      if(document.body.classList.contains('dark-mode')){
+        localStorage.setItem('mode', 'dark');
+        toggleBtn.textContent = 'হোয়াইট মোড চালু করুন';
+      } else {
+        localStorage.setItem('mode', 'light');
+        toggleBtn.textContent = 'ডার্ক মোড চালু করুন';
+      }
+    });
+  </script>
 </body>
 </html>
