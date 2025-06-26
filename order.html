@@ -126,6 +126,21 @@
   </div>
 
   <script>
+    // অটো প্যাকেজ সিলেকশন (URL থেকে প্যাকেজ ধরবে)
+    const urlParams = new URLSearchParams(window.location.search);
+    const selectedPackage = urlParams.get('package');
+
+    if (selectedPackage) {
+      const packageSelect = document.getElementById('package');
+      for (let i = 0; i < packageSelect.options.length; i++) {
+        if (packageSelect.options[i].text === selectedPackage) {
+          packageSelect.selectedIndex = i;
+          break;
+        }
+      }
+    }
+
+    // ফর্ম সাবমিট হলে Telegram-এ পাঠানো হবে
     const form = document.getElementById("starForm");
     const successMsg = document.getElementById("successMsg");
 
@@ -137,8 +152,8 @@
       const pack = document.getElementById("package").value;
       const last4 = document.getElementById("last4").value;
 
-      const token = "8135507548:AAFZxYeH6rDLSEy_xouzpX4CnXxkuDwTFGI"; // 🛡️ Replace this!
-      const chat_id = "7027541750";
+      const token = "8135507548:AAFZxYeH6rDLSEy_xouzpX4CnXxkuDwTFGI"; // 🔒 তোমার নিজের টেলিগ্রাম বট টোকেন দাও
+      const chat_id = "7027541750"; // 🔒 তোমার টেলিগ্রাম চ্যাট আইডি
 
       const message = `📥 নতুন স্টার অর্ডার\n\n👤 নাম: ${name}\n🔗 ফেসবুক: ${facebook}\n⭐ প্যাকেজ: ${pack}\n🔢 পেমেন্ট নাম্বার (শেষ ৪): ${last4}\n✅ টাকা পাঠানো নিশ্চিত করেছেন`;
 
