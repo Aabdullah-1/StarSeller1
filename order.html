@@ -5,92 +5,192 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>অর্ডার ফেসবুক স্টার - Star Sender</title>
   <style>
+    /* বেসিক স্টাইল */
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #e3f2fd;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(270deg, #e3f2fd, #fff3e0, #fce4ec);
+      background-size: 600% 600%;
+      animation: gradientAnimation 20s ease infinite;
       color: #0d47a1;
       margin: 0;
       padding: 20px;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
     }
 
+    @keyframes gradientAnimation {
+      0% {background-position:0% 50%;}
+      50% {background-position:100% 50%;}
+      100% {background-position:0% 50%;}
+    }
+
+    /* ফর্ম কনটেইনার */
     .form-container {
-      max-width: 500px;
+      max-width: 520px;
       margin: auto;
-      background: white;
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      background: rgba(255,255,255,0.95);
+      padding: 30px 30px 40px 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+      position: relative;
+      z-index: 10;
     }
 
     h2 {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      color: #1a237e;
+      font-weight: 700;
+      font-size: 26px;
+      letter-spacing: 1.2px;
     }
 
     .payment-info {
-      background: #f1f8e9;
-      padding: 15px;
-      margin-bottom: 20px;
-      border-left: 5px solid #4caf50;
-      border-radius: 8px;
+      background: #e8f5e9;
+      padding: 18px 20px;
+      margin-bottom: 25px;
+      border-left: 6px solid #43a047;
+      border-radius: 10px;
+      font-size: 17px;
+      color: #2e7d32;
+      line-height: 1.5;
     }
 
     .payment-info p {
-      margin: 5px 0;
-      font-size: 16px;
+      margin: 8px 0;
+      font-weight: 600;
     }
 
     label {
-      font-weight: bold;
-      margin-top: 10px;
+      font-weight: 600;
+      margin-top: 15px;
       display: block;
+      font-size: 16px;
+      color: #283593;
     }
 
     input, select {
       width: 100%;
-      padding: 10px;
-      margin-top: 5px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+      padding: 12px;
+      margin-top: 8px;
+      margin-bottom: 18px;
+      border-radius: 8px;
+      border: 1.8px solid #90caf9;
+      font-size: 15px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: #1e88e5;
+      box-shadow: 0 0 8px #64b5f6;
     }
 
     .confirm-box {
-      margin-top: 10px;
       font-size: 15px;
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      color: #1b5e20;
+      font-weight: 600;
+      gap: 8px;
     }
 
     button {
       width: 100%;
-      background: #2196f3;
+      background: #1976d2;
       color: white;
-      padding: 12px;
+      padding: 14px;
       border: none;
-      border-radius: 8px;
-      font-size: 16px;
+      border-radius: 10px;
+      font-size: 17px;
       cursor: pointer;
+      font-weight: 700;
+      box-shadow: 0 5px 15px rgba(25, 118, 210, 0.4);
+      transition: background-color 0.3s ease;
     }
 
     button:hover {
-      background: #1976d2;
+      background-color: #0d47a1;
     }
 
     .success-msg {
       display: none;
       text-align: center;
-      color: green;
-      font-weight: bold;
-      margin-top: 20px;
+      color: #2e7d32;
+      font-weight: 700;
+      margin-top: 25px;
+      font-size: 18px;
+    }
+
+    /* স্টার অ্যানিমেশন কনটেইনার */
+    .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .star {
+      position: absolute;
+      width: 24px;
+      height: 24px;
+      background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Full_Star_Yellow.svg/24px-Full_Star_Yellow.svg.png') no-repeat center;
+      background-size: contain;
+      animation: fallStar 6s linear infinite;
+      opacity: 0.85;
+      filter: drop-shadow(0 0 1px gold);
+    }
+
+    @keyframes fallStar {
+      0% {
+        transform: translateY(-40px) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* মোবাইল রেস্পন্সিভ */
+    @media (max-width: 480px) {
+      .form-container {
+        padding: 20px 20px 30px 20px;
+      }
+
+      h2 {
+        font-size: 22px;
+      }
+
+      label, input, select, .confirm-box {
+        font-size: 14px;
+      }
+
+      button {
+        font-size: 16px;
+        padding: 12px;
+      }
     }
   </style>
 </head>
 <body>
+
+  <div class="stars"></div>
 
   <div class="form-container">
     <h2>⭐ ফেসবুক স্টার অর্ডার ফর্ম</h2>
 
     <div class="payment-info">
       <p>📱 bKash: <strong>01754441574</strong></p>
+      <p>📱 Nagad: <strong>01969041393</strong></p>
       <p>💳 অনুগ্রহ করে উপরের যেকোনো নাম্বারে টাকা পাঠান।</p>
     </div>
 
@@ -126,10 +226,24 @@
   </div>
 
   <script>
-    // অটো প্যাকেজ সিলেকশন (URL থেকে প্যাকেজ ধরবে)
+    // স্টার ক্রিয়েট ও ড্রপ অ্যানিমেশন
+    const starsContainer = document.querySelector('.stars');
+    const starCount = 30; // স্টার সংখ্যা বাড়াতে পারো
+
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.classList.add('star');
+      star.style.left = Math.random() * 100 + 'vw';
+      star.style.animationDelay = Math.random() * 6 + 's';
+      star.style.animationDuration = 4 + Math.random() * 3 + 's';
+      star.style.width = (16 + Math.random() * 12) + 'px';
+      star.style.height = star.style.width;
+      starsContainer.appendChild(star);
+    }
+
+    // অটো প্যাকেজ সিলেকশন (URL থেকে)
     const urlParams = new URLSearchParams(window.location.search);
     const selectedPackage = urlParams.get('package');
-
     if (selectedPackage) {
       const packageSelect = document.getElementById('package');
       for (let i = 0; i < packageSelect.options.length; i++) {
@@ -140,20 +254,20 @@
       }
     }
 
-    // ফর্ম সাবমিট হলে Telegram-এ পাঠানো হবে
+    // ফর্ম সাবমিট হলে Telegram এ পাঠানো
     const form = document.getElementById("starForm");
     const successMsg = document.getElementById("successMsg");
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const name = document.getElementById("name").value;
-      const facebook = document.getElementById("facebook").value;
-      const pack = document.getElementById("package").value;
-      const last4 = document.getElementById("last4").value;
+      const name = document.getElementById("name").value.trim();
+      const facebook = document.getElementById("facebook").value.trim();
+      const pack = document.getElementById("package").value.trim();
+      const last4 = document.getElementById("last4").value.trim();
 
-      const token = "8135507548:AAFZxYeH6rDLSEy_xouzpX4CnXxkuDwTFGI"; // 🔒 তোমার নিজের টেলিগ্রাম বট টোকেন দাও
-      const chat_id = "7027541750"; // 🔒 তোমার টেলিগ্রাম চ্যাট আইডি
+      const token = "8135507548:AAFZxYeH6rDLSEy_xouzpX4CnXxkuDwTFGI"; // তোমার টোকেন বসাও
+      const chat_id = "7027541750"; // তোমার চ্যাট আইডি
 
       const message = `📥 নতুন স্টার অর্ডার\n\n👤 নাম: ${name}\n🔗 ফেসবুক: ${facebook}\n⭐ প্যাকেজ: ${pack}\n🔢 পেমেন্ট নাম্বার (শেষ ৪): ${last4}\n✅ টাকা পাঠানো নিশ্চিত করেছেন`;
 
