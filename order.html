@@ -3,207 +3,138 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>স্টার অর্ডার করুন</title>
+  <title>অর্ডার ফেসবুক স্টার - Star Sender</title>
   <style>
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      font-family: 'Segoe UI', sans-serif;
+      background: #e3f2fd;
       color: #0d47a1;
-    }
-
-    header {
-      background-color: #0d47a1;
-      color: white;
+      margin: 0;
       padding: 20px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
-    main {
+    .form-container {
       max-width: 500px;
-      margin: 30px auto;
+      margin: auto;
       background: white;
-      border-radius: 12px;
       padding: 25px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
     }
 
     h2 {
-      color: #0d47a1;
-      margin-bottom: 20px;
       text-align: center;
+      margin-bottom: 20px;
     }
 
-    .payment-info {
-      background: #f1f8ff;
-      border: 1px solid #a3c1f7;
-      border-radius: 10px;
-      padding: 15px;
-      margin-bottom: 30px;
-      font-weight: 600;
-    }
-
-    form label {
+    label {
+      font-weight: bold;
+      margin-top: 10px;
       display: block;
-      margin: 15px 0 5px;
-      font-weight: 600;
     }
 
-    input[type="text"],
-    input[type="url"],
-    select {
+    input, select {
       width: 100%;
       padding: 10px;
+      margin-top: 5px;
+      margin-bottom: 15px;
       border-radius: 6px;
       border: 1px solid #ccc;
-      font-size: 16px;
-    }
-
-    .file-upload {
-      position: relative;
-      margin-top: 10px;
-    }
-
-    .file-upload input[type="file"] {
-      width: 100%;
-      opacity: 0;
-      position: absolute;
-      left: 0;
-      top: 0;
-      height: 100%;
-      cursor: pointer;
-    }
-
-    .file-upload label {
-      display: block;
-      background-color: #e0f2f1;
-      border: 2px dashed #26a69a;
-      color: #004d40;
-      padding: 20px;
-      border-radius: 10px;
-      text-align: center;
-      font-size: 15px;
-      cursor: pointer;
-    }
-
-    .file-upload label:hover {
-      background-color: #b2dfdb;
     }
 
     button {
-      margin-top: 25px;
       width: 100%;
-      background-color: #2196f3;
-      border: none;
+      background: #2196f3;
       color: white;
-      font-weight: 700;
       padding: 12px;
+      border: none;
       border-radius: 8px;
-      font-size: 18px;
+      font-size: 16px;
       cursor: pointer;
     }
 
     button:hover {
-      background-color: #1976d2;
+      background: #1976d2;
     }
 
-    footer {
+    .success-msg {
+      display: none;
       text-align: center;
-      padding: 15px;
-      background: #f1f1f1;
-      font-size: 14px;
-      margin-top: 30px;
-      color: #555;
+      color: green;
+      font-weight: bold;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>স্টার অর্ডার করুন</h1>
-  </header>
+  <div class="form-container">
+    <h2>⭐ ফেসবুক স্টার অর্ডার করুন</h2>
+    <form id="starForm">
+      <label>আপনার নাম *</label>
+      <input type="text" id="name" required />
 
-  <main>
-    <h2>পেমেন্ট তথ্য</h2>
-    <div class="payment-info">
-      <p><strong>bKash:</strong> 01754441574</p>
-      <p><strong>Nagad/Rocket:</strong> 01969041393</p>
-    </div>
+      <label>ফেসবুক প্রোফাইল লিংক *</label>
+      <input type="url" id="facebook" required />
 
-    <form id="starForm" autocomplete="off">
-      <label for="name">আপনার নাম *</label>
-      <input type="text" id="name" name="name" required />
-
-      <label for="facebook">ফেসবুক প্রোফাইল লিঙ্ক *</label>
-      <input type="url" id="facebook" name="facebook" required />
-
-      <label for="package">স্টার প্যাকেজ নির্বাচন করুন *</label>
-      <select id="package" name="package" required>
-        <option value="" disabled selected>প্যাকেজ সিলেক্ট করুন</option>
-        <option value="১০ স্টার - ৩০ টাকা">১০ স্টার - ৩০ টাকা</option>
-        <option value="২০ স্টার - ৬০ টাকা">২০ স্টার - ৬০ টাকা</option>
-        <option value="৩০ স্টার - ৯০ টাকা">৩০ স্টার - ৯০ টাকা</option>
-        <option value="৪০ স্টার - ১২০ টাকা">৪০ স্টার - ১২০ টাকা</option>
-        <option value="৫০ স্টার - ১৫০ টাকা">৫০ স্টার - ১৫০ টাকা</option>
-        <option value="১০০ স্টার - ৩০০ টাকা">১০০ স্টার - ৩০০ টাকা</option>
-        <option value="২০০ স্টার - ৫৫০ টাকা">২০০ স্টার - ৫৫০ টাকা</option>
-        <option value="৩০০ স্টার - ৭৫০ টাকা">৩০০ স্টার - ৭৫০ টাকা</option>
-        <option value="৪০০ স্টার - ১০০০ টাকা">৪০০ স্টার - ১০০০ টাকা</option>
-        <option value="৫০০ স্টার - ১২৫০ টাকা">৫০০ স্টার - ১২৫০ টাকা</option>
+      <label>স্টার প্যাকেজ *</label>
+      <select id="package" required>
+        <option value="" disabled selected>প্যাকেজ নির্বাচন করুন</option>
+        <option>১০ স্টার - ৩০ টাকা</option>
+        <option>২০ স্টার - ৬০ টাকা</option>
+        <option>৫০ স্টার - ১৫০ টাকা</option>
+        <option>১০০ স্টার - ৩০০ টাকা</option>
+        <option>২০০ স্টার - ৫৫০ টাকা</option>
+        <option>৫০০ স্টার - ১২৫০ টাকা</option>
       </select>
 
-      <label for="screenshot">পেমেন্ট স্ক্রিনশট *</label>
-      <div class="file-upload">
-        <label for="screenshot">ইমেজ আপলোড করুন (JPG, PNG, JPEG, WEBP)</label>
-        <input type="file" id="screenshot" name="screenshot" accept="image/*" required />
-      </div>
-
-      <button type="submit">অর্ডার সাবমিট করুন</button>
+      <button type="submit">✅ অর্ডার সাবমিট করুন</button>
+      <div class="success-msg" id="successMsg">অর্ডার পাঠানো হয়েছে ✅</div>
     </form>
-  </main>
-
-  <footer>
-    &copy; 2025 Star Sender | বিকাশ, নগদ ও রকেট পেমেন্ট গ্রহণযোগ্য
-  </footer>
+  </div>
 
   <script>
-    document.getElementById("starForm").addEventListener("submit", async function(e) {
+    const form = document.getElementById("starForm");
+    const successMsg = document.getElementById("successMsg");
+
+    form.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      const name = document.getElementById("name").value.trim();
-      const facebook = document.getElementById("facebook").value.trim();
-      const starPackage = document.getElementById("package").value;
-      const screenshot = document.getElementById("screenshot").files[0];
+      const name = document.getElementById("name").value;
+      const facebook = document.getElementById("facebook").value;
+      const pack = document.getElementById("package").value;
 
-      if (!name || !facebook || !starPackage || !screenshot) {
-        alert("সব তথ্য পূরণ করুন।");
-        return;
-      }
+      const token = "REPLACE_THIS_WITH_YOUR_NEW_TOKEN"; // ⚠️ Replace with new secure token
+      const chat_id = "7027541750";
+      const message = `📥 নতুন স্টার অর্ডার\n\n👤 নাম: ${name}\n🔗 ফেসবুক: ${facebook}\n⭐ প্যাকেজ: ${pack}`;
 
-      const botToken = '8135507548:AAFZxYeH6rDLSEy_xouzpX4CnXxkuDwTFGI';
-      const chatId = '7027541750';
-
-      const message = `⭐ নতুন অর্ডার:\n\n👤 নাম: ${name}\n🔗 ফেসবুক: ${facebook}\n📦 প্যাকেজ: ${starPackage}`;
-
-      await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: chatId, text: message })
-      });
-
-      const formData = new FormData();
-      formData.append("chat_id", chatId);
-      formData.append("photo", screenshot);
-      formData.append("caption", `🧾 ${name} - পেমেন্ট স্ক্রিনশট`);
-
-      await fetch(`https://api.telegram.org/bot${botToken}/sendPhoto`, {
+      fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: "POST",
-        body: formData
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          chat_id: chat_id,
+          text: message
+        })
+      })
+      .then(res => {
+        if (res.ok) {
+          successMsg.style.display = "block";
+          form.reset();
+          setTimeout(() => {
+            window.location.href = "success.html";
+          }, 2000);
+        } else {
+          alert("❌ অর্ডার পাঠাতে সমস্যা হয়েছে");
+        }
+      })
+      .catch(err => {
+        alert("❌ ইন্টারনেট সংযোগ বা সার্ভার সমস্যা");
+        console.error(err);
       });
-
-      window.location.href = "success.html";
     });
   </script>
+
 </body>
 </html>
