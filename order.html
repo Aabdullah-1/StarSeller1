@@ -27,6 +27,19 @@
       margin-bottom: 20px;
     }
 
+    .payment-info {
+      background: #f1f8e9;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-left: 5px solid #4caf50;
+      border-radius: 8px;
+    }
+
+    .payment-info p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
     label {
       font-weight: bold;
       margin-top: 10px;
@@ -40,6 +53,11 @@
       margin-bottom: 15px;
       border-radius: 6px;
       border: 1px solid #ccc;
+    }
+
+    .confirm-box {
+      margin-top: 10px;
+      font-size: 15px;
     }
 
     button {
@@ -69,7 +87,14 @@
 <body>
 
   <div class="form-container">
-    <h2>⭐ ফেসবুক স্টার অর্ডার করুন</h2>
+    <h2>⭐ ফেসবুক স্টার অর্ডার ফর্ম</h2>
+
+    <div class="payment-info">
+      <p>📱 bKash: <strong>01754441574</strong></p>
+      <p>📱 Nagad / Rocket: <strong>01969041393</strong></p>
+      <p>💳 অনুগ্রহ করে উপরের যেকোনো নাম্বারে টাকা পাঠান।</p>
+    </div>
+
     <form id="starForm">
       <label>আপনার নাম *</label>
       <input type="text" id="name" required />
@@ -88,8 +113,16 @@
         <option>৫০০ স্টার - ১২৫০ টাকা</option>
       </select>
 
+      <label>টাকা পাঠানো নাম্বারের শেষ ৪ সংখ্যা *</label>
+      <input type="text" id="last4" maxlength="4" pattern="\d{4}" required placeholder="উদাহরণ: 1574" />
+
+      <label class="confirm-box">
+        <input type="checkbox" id="confirm" required />
+        আমি উপরের নাম্বারে টাকা পাঠিয়েছি ✅
+      </label>
+
       <button type="submit">✅ অর্ডার সাবমিট করুন</button>
-      <div class="success-msg" id="successMsg">অর্ডার পাঠানো হয়েছে ✅</div>
+      <div class="success-msg" id="successMsg">অর্ডার পাঠানো হয়েছে ✅</div>
     </form>
   </div>
 
@@ -103,20 +136,17 @@
       const name = document.getElementById("name").value;
       const facebook = document.getElementById("facebook").value;
       const pack = document.getElementById("package").value;
+      const last4 = document.getElementById("last4").value;
 
-      const token = "8135507548:AAFZxYeH6rDLSEy_xouzpX4CnXxkuDwTFGI"; // ⚠️ Replace with new secure token
+      const token = "8135507548:AAFZxYeH6rDLSEy_xouzpX4CnXxkuDwTFGI"; // 🛡️ Replace this!
       const chat_id = "7027541750";
-      const message = `📥 নতুন স্টার অর্ডার\n\n👤 নাম: ${name}\n🔗 ফেসবুক: ${facebook}\n⭐ প্যাকেজ: ${pack}`;
+
+      const message = `📥 নতুন স্টার অর্ডার\n\n👤 নাম: ${name}\n🔗 ফেসবুক: ${facebook}\n⭐ প্যাকেজ: ${pack}\n🔢 পেমেন্ট নাম্বার (শেষ ৪): ${last4}\n✅ টাকা পাঠানো নিশ্চিত করেছেন`;
 
       fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          chat_id: chat_id,
-          text: message
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chat_id, text: message })
       })
       .then(res => {
         if (res.ok) {
@@ -126,11 +156,11 @@
             window.location.href = "success.html";
           }, 2000);
         } else {
-          alert("❌ অর্ডার পাঠাতে সমস্যা হয়েছে");
+          alert("❌ অর্ডার পাঠাতে সমস্যা হয়েছে");
         }
       })
       .catch(err => {
-        alert("❌ ইন্টারনেট সংযোগ বা সার্ভার সমস্যা");
+        alert("❌ নেটওয়ার্ক সমস্যা!");
         console.error(err);
       });
     });
