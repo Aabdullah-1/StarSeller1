@@ -156,6 +156,7 @@
       text-decoration: none;
       font-size: 14px;
       transition: background 0.3s ease;
+      cursor: pointer;
     }
 
     .btn:hover {
@@ -212,52 +213,52 @@
     <div class="package">
       <h2>🔹 ১০ স্টার</h2>
       <p class="price">৩০ টাকা</p>
-      <a href="order.html?package=১০ স্টার - ৩০ টাকা" class="btn">অর্ডার করুন</a>
+      <button class="btn package-btn" data-package="১০ স্টার - ৩০ টাকা">অর্ডার করুন</button>
     </div>
     <div class="package">
       <h2>🔹 ২০ স্টার</h2>
       <p class="price">৬০ টাকা</p>
-      <a href="order.html?package=২০ স্টার - ৬০ টাকা" class="btn">অর্ডার করুন</a>
+      <button class="btn package-btn" data-package="২০ স্টার - ৬০ টাকা">অর্ডার করুন</button>
     </div>
     <div class="package">
       <h2>🔹 ৩০ স্টার</h2>
       <p class="price">৯০ টাকা</p>
-      <a href="order.html?package=৩০ স্টার - ৯০ টাকা" class="btn">অর্ডার করুন</a>
+      <button class="btn package-btn" data-package="৩০ স্টার - ৯০ টাকা">অর্ডার করুন</button>
     </div>
     <div class="package">
       <h2>🔹 ৪০ স্টার</h2>
       <p class="price">১২০ টাকা</p>
-      <a href="order.html?package=৪০ স্টার - ১২০ টাকা" class="btn">অর্ডার করুন</a>
+      <button class="btn package-btn" data-package="৪০ স্টার - ১২০ টাকা">অর্ডার করুন</button>
     </div>
     <div class="package">
       <h2>🔹 ৫০ স্টার</h2>
       <p class="price">১৫০ টাকা</p>
-      <a href="order.html?package=৫০ স্টার - ১৫০ টাকা" class="btn">অর্ডার করুন</a>
+      <button class="btn package-btn" data-package="৫০ স্টার - ১৫০ টাকা">অর্ডার করুন</button>
     </div>
     <div class="package">
       <h2>⭐ ১০০ স্টার</h2>
       <p class="price">৩০০ টাকা</p>
-      <a href="order.html?package=১০০ স্টার - ৩০০ টাকা" class="btn">অর্ডার করুন</a>
+      <button class="btn package-btn" data-package="১০০ স্টার - ৩০০ টাকা">অর্ডার করুন</button>
     </div>
     <div class="package">
       <h2>⭐ ২০০ স্টার</h2>
       <p class="price">৫৫০ টাকা</p>
-      <a href="order.html?package=২০০ স্টার - ৫৫০ টাকা" class="btn">অর্ডার করুন</a>
+      <button class="btn package-btn" data-package="২০০ স্টার - ৫৫০ টাকা">অর্ডার করুন</button>
     </div>
     <div class="package">
       <h2>⭐ ৩০০ স্টার</h2>
       <p class="price">৭৫০ টাকা</p>
-      <a href="order.html?package=৩০০ স্টার - ৭৫০ টাকা" class="btn">অর্ডার করুন</a>
+      <button class="btn package-btn" data-package="৩০০ স্টার - ৭৫০ টাকা">অর্ডার করুন</button>
     </div>
     <div class="package">
       <h2>⭐ ৪০০ স্টার</h2>
       <p class="price">১০০০ টাকা</p>
-      <a href="order.html?package=৪০০ স্টার - ১০০০ টাকা" class="btn">অর্ডার করুন</a>
+      <button class="btn package-btn" data-package="৪০০ স্টার - ১০০০ টাকা">অর্ডার করুন</button>
     </div>
     <div class="package">
       <h2>⭐ ৫০০ স্টার</h2>
       <p class="price">১২৫০ টাকা</p>
-      <a href="order.html?package=৫০০ স্টার - ১২৫০ টাকা" class="btn">অর্ডার করুন</a>
+      <button class="btn package-btn" data-package="৫০০ স্টার - ১২৫০ টাকা">অর্ডার করুন</button>
     </div>
   </div>
 
@@ -301,6 +302,15 @@
         localStorage.setItem('mode', 'light');
         toggleBtn.textContent = 'ডার্ক মোড চালু করুন';
       }
+    });
+
+    // সব বাটনে ক্লিক করলে order.html এ প্যাকেজ প্যারামিটার পাঠানো হবে
+    document.querySelectorAll('.package-btn').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.preventDefault();
+        const pkg = btn.getAttribute('data-package');
+        window.location.href = `order.html?package=${encodeURIComponent(pkg)}`;
+      });
     });
   </script>
 </body>
