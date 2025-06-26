@@ -4,86 +4,92 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>স্টার কিনুন - Star Sender</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(to right, #e0f7fa, #ffffff);
-      color: #333;
+      font-family: 'Noto Sans Bengali', sans-serif;
+      background: linear-gradient(135deg, #e3f2fd, #fce4ec);
+      color: #212121;
     }
     header {
-      background-color: #0d47a1;
+      background: linear-gradient(to right, #1e88e5, #3949ab);
       color: white;
-      padding: 20px;
+      padding: 25px 15px;
       text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
     header h1 {
       margin: 0;
-      font-size: 28px;
+      font-size: 24px;
     }
     .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
       gap: 20px;
-      padding: 30px 10px;
+      padding: 20px;
       max-width: 1000px;
       margin: auto;
     }
     .package {
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      width: 200px;
-      padding: 25px;
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.1);
+      padding: 20px;
       text-align: center;
-      transition: transform 0.3s ease;
-      cursor: default;
+      transition: all 0.3s ease;
     }
     .package:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
     }
     .package h2 {
-      color: #0d47a1;
-      margin-bottom: 10px;
-      font-size: 22px;
+      color: #5e35b1;
+      margin-bottom: 8px;
+      font-size: 20px;
     }
     .price {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 700;
-      color: #1b5e20;
+      color: #2e7d32;
       margin-bottom: 15px;
     }
     .btn {
       display: inline-block;
-      padding: 10px 25px;
-      background-color: #2196f3;
+      padding: 10px 20px;
+      background-color: #00c853;
       color: white;
-      border-radius: 8px;
+      border-radius: 10px;
       font-weight: 700;
       text-decoration: none;
-      transition: background 0.3s;
+      font-size: 15px;
+      transition: background 0.3s ease;
     }
     .btn:hover {
-      background-color: #1976d2;
+      background-color: #009624;
     }
     footer {
       text-align: center;
-      padding: 15px;
-      background: #f1f1f1;
+      padding: 18px;
+      background: #eeeeee;
       font-size: 14px;
-      margin-top: 30px;
       color: #555;
+      margin-top: 30px;
     }
-    @media (max-width: 600px) {
-      .container {
-        flex-direction: column;
-        align-items: center;
+
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 20px;
       }
-      .package {
-        width: 90%;
+      .package h2 {
+        font-size: 18px;
+      }
+      .price {
+        font-size: 16px;
+      }
+      .btn {
+        font-size: 14px;
+        padding: 8px 16px;
       }
     }
   </style>
@@ -91,7 +97,7 @@
 <body>
 
   <header>
-    <h1>ফেসবুক স্টার কিনুন - সহজে ও নিরাপদে</h1>
+    <h1>ফেসবুক স্টার কিনুন - নিরাপদ ও সহজে</h1>
   </header>
 
   <div class="container">
@@ -139,6 +145,7 @@
       <h2>⭐ ৪০০ স্টার</h2>
       <p class="price">১০০০ টাকা</p>
       <a href="order.html" class="btn">অর্ডার করুন</a>
+    </div>
   </div>
 
   <footer>
